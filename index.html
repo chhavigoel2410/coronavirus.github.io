@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>COVID RESCURE RURAL AREA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<div id="bigbox">
+
+  <body onload="fetch()">
+    <nav class="navbar navbar-expand-lg nav_style p-3">
+    <img id="logoimg" src="logo.png">
+      <a id="cofight" class="navbar-brand pl-5" href="#">CO#FIGHT</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto pr-5 text-capitalize">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#aboutid">About Covid-19</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="navbar.php">Requirement Page</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#sympid">Symptons</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#preventionid">Prevention</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#indiacoronaliveid">India-CoronaLive</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#icon1">Contact us</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+</div>
+<div id="theme" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Our theme:</strong>  We can win this if we stay Together 
+  <button type="button" class="btn-close btn-lg" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+       <b> A special Thanks to our Doctors</b>
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse " aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div id="size" class="accordion-body "> <b> Not all Hero wear capes Some wear PP kit to save the World. A special Thanks To our doctors for being there for us </b>.</div>
+    </div>
+  </div> 
+<div class="main_header">
+  <div class="row w-100 h-100">
+    <div class="col-lg-5 col-md -5 col-12 order-lg-1 order-2">
+      <div class="leftside w-100 h-100 d-flex justify-content-center align-items-center">
+        <img src="iimage.jpg" width="450" height="250">
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md -7 col-12 order-lg-2 order-1">
+      <div class="rightside w-100 h-100 d-flex justify-content-center align-items-center">
+        <h1> <b><i>Let's Stay Safe & Fight Together Against Cor </b></i> <span class="corona_rot"><img
+              src="coronavirus.png" width="40" height="40"></span> <b><i>na Virus</i></b> </h1>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="boxbox">
+
+  <div id="fromlink" class="fromlink"> WE ARE HERE TO HELP YOU 24/7 <br> YOU CAN FILL A FORM WITH YOUR REQUIRMENTS <br>
+    <b> <a id="clicklink" href="navbar.php">click here</a></b></div>
+  <div class="image">
+    <img id="image" src="stopcovid.jpg" width="350" height="150">
+  </div>
+</div>
+<!--***Corona latest Updates**-->
+<br>
+<br>
+<section class="corona_update container-fluid">
+  <div class="mb-5" id="indiacoronaliveid">
+    <h3 id="live" class="text-center text -uppercase"><b> COVID-19 LIVE UPDATES OF INDIA</b></h3>
+    <hr>
+    <div class="table-responsive">
+
+      <table class="table table bordered table-striped text-center">
+        <tr>
+          <th id="livetable" class="text-capitalize">Lastupdatedtime</th>
+          <th id="livetable" class="text-capitalize">state</th>
+          <th id="livetable" class="text-capitalize">confirmed</th>
+          <th id="livetable" class="text-capitalize">active</th>
+          <th id="livetable" class="text-capitalize">recovered</th>
+          <th id="livetable" class="text-capitalize">deaths</th>
+        </tr>
+
+        <?php
+error_reporting(0);
+$data = file_get_contents('https://api.covid19india.org/data.json');
+$coranalive = json_decode($data,true);
+
+//echo "<pre>";
+//print_r($coronalive);
+//echo "</pre>";
+$statescount = count($coranalive['statewise']);
+$i=1;
+while($i < $statescount){
+
+    ?>
+
+        <tr>
+          <td>
+            <?php echo $coranalive['statewise'][$i]['lastupdatedtime']?>
+          </td>
+          <td>
+            <?php echo $coranalive['statewise'][$i]['state']?>
+          </td>
+          <td>
+            <?php echo $coranalive['statewise'][$i]['confirmed']?>
+          </td>
+          <td>
+            <?php echo $coranalive['statewise'][$i]['active']?>
+          </td>
+          <td>
+            <?php echo $coranalive['statewise'][$i]['recovered']?>
+          </td>
+          <td>
+            <?php echo $coranalive['statewise'][$i]['deaths']?>
+          </td>
+        </tr>
+        <!--echo $coranalive['statewise'][$i]['lastupdatedtime'] . "<br>"  ;
+  echo $coranalive['statewise'][$i]['state'] . "<br>"  ;
+  echo $coranalive['statewise'][$i]['confirmed'] . "<br>"  ;
+  echo $coranalive['statewise'][$i]['active'] . "<br>"  ;
+  echo $coranalive['statewise'][$i]['recovered'] . "<br>"  ;
+  echo $coranalive['statewise'][$i]['deaths'] . "<br>"  ; ------>
+        <?php
+  $i++;
+}
+?>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ***About section***-->
+<section class="About_section">
+  <div class="container-fluid sub_section pt-5 pb-5" id="aboutid">
+    <div class="section_header text-center mb-5 mt-4">
+      <h1>About COVID-19</h1>
+    </div>
+
+    <div class="row pt-5">
+      <div class="col-lg-5 col-md-6 col-12 ml-5 about_res">
+        <span class="corona"><img src="corona-virus.jpg" class="img-fluid"></span>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-12">
+        <h2> <b> What is COVID-19(Corona-Virus) </b></h2>
+        <p class="explain">Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered
+          coronavirus.Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness
+          and recover without requiring special treatment. Older people, and those with underlying medical problems like
+          cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more likely to develop serious
+          illness</p>
+        <p class="explain">The best way to prevent and slow down transmission is to be well informed about the COVID-19
+          virus, the disease it causes and how it spreads. Protect yourself and others from infection by washing your
+          hands or using an alcohol based rub frequently and not touching your face.
+
+          The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected
+          person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by
+          coughing into a flexed elbow).</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!--///////////////corona symptons///////////-->
+
+  <div class="container-fluid pt-2 pb-2" id="sympid">
+    <div class="section_header text-center mb-2 mt-2">
+      <h1> <b> Coronavirus symptons</b></h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div id="symp">
+          <div class="col-lg-12 col-md-8 col-6 mt-5">
+            <ul id="sympt">
+              Researchers found that the most common symptoms among people who were hospitalized with COVID-19 include:
+              <li> Fever: 99% <br>
+              <li>Fatigue:70% <br></li>
+              <li>A dry cough: 59% <br></li>
+              <li>Loss of appetite: 40% <br></li>
+              <li>Body aches: 35% <br></li>
+              <li>Shortness of breath: 31%<br></li>
+              <li>Mucus or phlegm: 27%<br></li>
+              Symptoms usually begin 2 to 14 days after you come into contact with the <br>virus.
+              Other symptoms may include:<br>
+              <li>Sore throat<br></li>
+              <li>Headache<br></li>
+              <li>Chills, sometimes with shaking<br></li>
+              <li>Loss of smell or taste<br></li>
+              <li>Congestion or runny nose<br></li>
+              <li>Nausea or vomiting<br></li>
+              <li>Diarrhea</p>
+              </li>
+            </ul>
+            <figure class="text-center">
+              <img id="sympimg" src="symptons.png" class="img-fluid" width="600" height="650">
+            </figure>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-8 col-6 mt-5">
+          <figure class="text-center">
+            <img src="Covid-19_Common_Symptoms.jpg" class="img-fluid" width="650" height="700">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--///////////////PREVENTION///////////-->
+<section class="Prevention">
+  <div class="container-fluid pt-1 pb-1" id="preventionid">
+    <div class="section_header text-center mb-1 mt-1">
+      <h1>Prevention</h1>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-8 col-12 mt-5">
+          <figure class="text-center">
+            <div id="prev">
+              <p id="preve"> 1 Wash your hands well and often. Use hand sanitizer when you’re not near soap and water
+                <br>2 When you do go out in public, leave at least 6 feet of space between you and others <br> 3 Cover
+                your mouth with your elbow when you cough or sneeze, or use a tissue.Wearing mask outside the house is
+                mandatory <br>4 Don’t leave your house if you don’t feel well and follow the basic guide lines alloted
+                by the GOvernment.<br> 5 Stay away from a skick person </p>
+
+              <img src="prevention2.jpg" class="img-fluid" width="600" height="650">
+          </figure>
+        </div>
+      </div>
+
+      <div class="col-lg-12 col-md-8 col-6 mt-5">
+        <figure class="text-center">
+          <img src="Prevention.jpg" class="img-fluid" width="500" height="500">
+        </figure>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<h1 id="helpline"> <b> COVID-19 HELP LINE NUMBERS</b> </h1>
+<div class="helpline">
+  <img src="help.png" width="1300px" height="600px" alt="">
+</div>
+
+<!--///////////////Contact us///////////-->
+
+<?php
+include 'dbcon.php';
+
+if(isset($_POST['submit'])){
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $mobile = $_POST['mobile'];
+  $symp = $_POST['coronasym'];
+  $message = $_POST['message'];
+
+$chk = "";
+
+foreach($symp as $chk1){
+  $chk .= $chk1.",";
+}
+$insertquery = " insert into coronacase (username, email, mobile, symp, message) values('$username', '$email', '$mobile', '$chk', '$message' ) ";
+$query = mysqli_query($con, $insertquery);
+
+if($query){ 
+  ?>
+<script>
+  // alert("inserted successfully");
+</script>
+<?php
+} else{
+  ?>
+<script>
+  // alert("No insertion");
+</script>
+<?php
+}
+}
+?>
+
+<footer class="mt-5">
+
+  <div class="footer_style text-white text-center container-fluid">
+    <div class="foot">
+      <div class="gmail">
+        <p>Mail us at- Yashh2611@gmail.com <br>Chhavigoel2410@gmail.com</p>
+      </div>
+      <div class="insta">
+        <a href="https://www.linkedin.com/in/yashasvi-b97809211/"><i id="icon1" class="fa fa-linkedin"
+            aria-hidden="true"></a></i>
+        <a href="https://www.instagram.com/chhavigoel24?r=nametag"><i id="icon2" class="fa fa-linkedin"
+            aria-hidden="true"></i></a>
+        <p> &copy copyright by Yashasvi & Chhavi</p>
+      </div>
+    </div>
+
+  </div>
+</footer>
+<script>
+  var i = 0;
+
+  lop = () => {
+    var logo = document.getElementById("cofight").innerText = "#STAYHOME #STAYSAFE";
+    console.log("value 1 is changed")
+    document.getElementById("cofight").style.color = 'red';
+  }
+  setInterval(lop, 2500);
+
+  lopp = () => {
+    document.getElementById("cofight").innerText = "CO#FIGHT";
+    console.log("value 2 changed")
+    document.getElementById("cofight").style.color = 'blue';
+  }
+  setInterval(lopp, 3790);
+</script>
+
+</body>
+
+</html>

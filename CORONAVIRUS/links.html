@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="stylelist.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a  id="logo"class="navbar-brand" href="#">CO#FIGHT <img id="logonav" src="logo.png" ></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a id="homelink" class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+            </li>
+            
+            
+            <li class="nav-item dropdown">
+              <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                About this page
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a id="expand" class="dropdown-item" href="">You can see the list of people suffring from Covid-19 <br> If you wantr to help someone <br>Go back to <b>FORM PAGE</b>and fill your name there.</a>
+               
+              </div>
+              <li class="nav-item">
+              <a id="formlink" class="nav-link" href="navbar.php">Requirement form</a>
+            </li>
+            <li class="nav-item">
+              <a  id="helplink" class="nav-link" href="#listpeople"> <b>Patients being helped</b> </a>
+            </li>
+            </li>
+          </ul>
+        </div>
+      </nav>
+     
+             <h2 id="heading1"> List Of People who are Suffering From Covid-19</h2>
+<div class="tablebox">
+<table class="border border-dark" id="table1"  border="1">
+    <tr class="border border-dark">
+    <th class="border border-dark">Name</th>
+   <th class="border border-dark">Phone</th>
+   <th class="border border-dark">address</th>
+   <th class="border border-dark">pincode</th>
+   <th class="border border-dark">requirements </th>
+   <th class="border border-dark">age</th>
+   
+    </tr>
+    </div>
+    
+<?php
+error_reporting(0);
+include("connection.php");
+$query = "SELECT * FROM crona_data";
+$display = mysqli_query($conn,$query);
+$total =mysqli_num_rows($display);
+// echo "$total";
+
+
+// echo $result['name']; this was just to check 1st name print
+// echo $result['name']. "  " .$result['phone']. "    ".$result['req'];
+if($total!=0)
+{ 
+    $result = mysqli_fetch_assoc($display);
+   while($result =mysqli_fetch_assoc($display)) 
+   {
+    echo "
+    <tr>
+   
+    <td>".$result['name']."</td> 
+    <td>".$result['phone']."</td>
+    <td>".$result['address']."</td>
+    <td>".$result['pincode']."</td>
+    <td>".$result['req']."</td>
+    <td>".$result['age']."</td>
+   
+    
+    </tr> "; 
+   }
+    // echo "table has records";
+}
+else{
+    // echo "no records";
+}
+?> 
+</table>
+ 
+ 
+
+ <table  border="1" id="help_table">
+ <tr>
+ <th>helping people</th>
+ <th>patient list</th>
+ </tr> <br>
+ 
+ <marquee behavior="alternate" direction="left"><h4> Tap anywhere on the image to donate to PM funds</h4></marquee>
+<a   href="https://www.pmcares.gov.in/en/"><img id="modi" src="banner-1.jpg"></a> <br> <br>
+<h3 id="heading3">  <i id="hands" class="fa fa-handshake-o " style="font-size:40px"></i>  Today you help others tommorrow they help you  <i> </h3>
+<br>
+
+    
+<div class="box2">
+<img id="helpimg" src="helpingimg.jpg" alt="">
+<img  id="helpimg2" src="helpingimg2.jpg" alt="">
+<img id="helpimg3" src="helpingimg3.jpg" alt="">
+
+<br>
+</div>
+<br>
+<h4 id="listpeople"> List of  people helping eachother  <sub>  Be a part </sub></h4>
+
+<br>
+ <?php
+$help="SELECT * FROM helpers";
+$show = mysqli_query($conn,$help);
+$people = mysqli_num_rows($show);
+
+if($people!=0){
+    while($res=mysqli_fetch_assoc($show))
+    {
+       echo "
+       
+       <tr>
+       <td>".$res['helping people']."</td>
+       <td>".$res['patients']."</td> 
+        
+       </tr> ";
+    }
+}
+
+ ?>
+
+ </table>
+ <br> <br>
+ <div class="foot">  
+     <div class="foot1">
+ <p id="amb"> <a href="https://www.newsbytesapp.com/news/india/autos-double-up-as-ambulances-in-chennai/story"><i class="fa fa-ambulance" style="font-size:50px"></i></a> <b> click on this symbol  <br>to know more about  services </p></b>
+ </div>
+ <div class="foot2">
+ <img  id="eme" src="eme.jpg" alt="">
+ </div>
+ <div class="foot3">
+ <img  id="eme2"src=https://cdn.dribbble.com/users/189524/screenshots/2738952/04_ambulance_800x600.gif alt="">
+ </div>
+ </div>
+ 
+</body>
+</html>
